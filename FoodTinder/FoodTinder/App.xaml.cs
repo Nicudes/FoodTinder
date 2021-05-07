@@ -1,16 +1,19 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using FoodTinder.View;
 
 namespace FoodTinder
 {
     public partial class App : Application
     {
+        public static double ScreenHeight;
+        public static double ScreenWidth;
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new SwipePage());
         }
 
         protected override void OnStart()
