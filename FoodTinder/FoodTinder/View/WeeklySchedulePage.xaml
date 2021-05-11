@@ -1,12 +1,128 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FoodTinder.View.WeeklySchedulePage">
+<ContentPage
+    x:Class="FoodTinder.View.WeeklySchedulePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Weekly Schedule"
+    BackgroundColor="WhiteSmoke"
+    NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout
+            x:Name="MainView"
+            Padding="40,0"
+            HorizontalOptions="CenterAndExpand"
+            IsVisible="false"
+            VerticalOptions="CenterAndExpand">
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                TextColor="Black">
+                Monday
+            </Label>
+            <Picker
+                x:Name="MondayDish"
+                Title="Choose Dish"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBinding="{Binding Type}"
+                ItemsSource="{Binding Dishes}"
+                SelectedItem="{Binding SelectedType}"
+                TitleColor="Black" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                TextColor="Black">
+                Tuesday
+            </Label>
+            <Picker
+                x:Name="TuesdayDish"
+                Title="Choose Dish"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBinding="{Binding Type}"
+                ItemsSource="{Binding Dishes}"
+                SelectedItem="{Binding SelectedType}"
+                TitleColor="Black" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                TextColor="Black">
+                Wednsday
+            </Label>
+            <Picker
+                x:Name="WednsdayDish"
+                Title="Choose Dish"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBinding="{Binding Type}"
+                ItemsSource="{Binding Dishes}"
+                SelectedItem="{Binding SelectedType}"
+                TitleColor="Black" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                TextColor="Black">
+                Thursday
+            </Label>
+            <Picker
+                x:Name="ThursdayDish"
+                Title="Choose Dish"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBinding="{Binding Type}"
+                ItemsSource="{Binding Dishes}"
+                SelectedItem="{Binding SelectedType}"
+                TitleColor="Black" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                TextColor="Black">
+                Friday
+            </Label>
+            <Picker
+                x:Name="FridayDish"
+                Title="Choose Dish"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBinding="{Binding Type}"
+                ItemsSource="{Binding Dishes}"
+                SelectedItem="{Binding SelectedType}"
+                TitleColor="Black" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                TextColor="Black">
+                Saturday
+            </Label>
+            <Picker
+                x:Name="SaturdayDish"
+                Title="Choose Dish"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBinding="{Binding Type}"
+                ItemsSource="{Binding Dishes}"
+                SelectedItem="{Binding SelectedType}"
+                TitleColor="Black" />
+
+            <Label
+                FontAttributes="Bold"
+                FontSize="20"
+                TextColor="Black">
+                Sunday
+            </Label>
+            <Picker
+                x:Name="SundayDish"
+                Title="Choose Dish"
+                HorizontalOptions="FillAndExpand"
+                ItemDisplayBinding="{Binding Type}"
+                ItemsSource="{Binding Dishes}"
+                SelectedItem="{Binding SelectedType}"
+                TitleColor="Black" />
+            <Button
+                Margin="0,20"
+                BackgroundColor="LightSeaGreen"
+                Text="Save" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

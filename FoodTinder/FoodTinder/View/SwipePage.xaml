@@ -88,7 +88,7 @@
                                             BackgroundColor="Transparent"
                                             FontSize="32"
                                             HorizontalTextAlignment="Center"
-                                            Text="CRAVINGS"
+                                            Text="CRAVING"
                                             TextColor="#2196F3"
                                             VerticalOptions="CenterAndExpand"
                                             VerticalTextAlignment="Center" />

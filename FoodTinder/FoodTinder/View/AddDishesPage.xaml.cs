@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using FoodTinder.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +14,18 @@ namespace FoodTinder.View
     {
         public AddDishesPage()
         {
+            BindingContext = new SwipePageViewModel();
             InitializeComponent();
+        }
+
+        private void Add_Dish_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UploadDishImage_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -20,13 +20,14 @@
                 <Button Text="Done" />
             </StackLayout>
             <StackLayout
-                Margin="0,-150,0,0"
-                Padding="15"
+                x:Name="MainView"
+                Margin="0,-100,0,0"
+                Padding="40,0"
                 BackgroundColor="#89000000"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand">
                 <Label
-                    Margin="10"
+                    Margin="0,0,0,15"
                     FontAttributes="Bold"
                     FontSize="Large"
                     HorizontalTextAlignment="Center"
@@ -34,22 +35,27 @@
                     Main Page
                 </Label>
                 <Button
+                    Margin="0,10"
                     BackgroundColor="DarkCyan"
                     Clicked="Swipe_Clicked"
                     Text="SWIPE" />
                 <Button
+                    Margin="0,10"
                     BackgroundColor="DarkCyan"
                     Clicked="Add_Dish_Clicked"
                     Text="Add Dishes" />
                 <Button
+                    Margin="0,10"
                     BackgroundColor="DarkCyan"
                     Clicked="Weekly_Clicked"
                     Text="Weekly Schedule" />
                 <Button
+                    Margin="0,10"
                     BackgroundColor="DarkCyan"
                     Clicked="Preference_Clicked"
                     Text="Food Preference" />
                 <Button
+                    Margin="0,10,0,20"
                     BackgroundColor="DarkCyan"
                     Clicked="Edit_Clicked"
                     Text="Edit Profile" />
