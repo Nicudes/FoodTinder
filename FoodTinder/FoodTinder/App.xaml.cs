@@ -13,7 +13,7 @@ namespace FoodTinder
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SwipePage());
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

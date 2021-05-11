@@ -3,37 +3,147 @@
     x:Class="FoodTinder.View.SwipePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:swipeCardView="clr-namespace:MLToolkit.Forms.SwipeCardView;assembly=MLToolkit.Forms.SwipeCardView">
+    xmlns:swipeCardView="clr-namespace:MLToolkit.Forms.SwipeCardView;assembly=MLToolkit.Forms.SwipeCardView"
+    Title="Food Swipe"
+    NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+            <swipeCardView:SwipeCardView
+                x:Name="SwipeCardView"
+                Padding="10"
+                DraggingCommand="{Binding DraggingCommand}"
+                HorizontalOptions="FillAndExpand"
+                ItemsSource="{Binding Dishes}"
+                LoopCards="True"
+                SupportedDraggingDirections="Left, Right, Up, Down"
+                SupportedSwipeDirections="Left, Right, Up"
+                SwipedCommand="{Binding SwipedCommand}"
+                Threshold="{Binding Threshold}"
+                VerticalOptions="FillAndExpand">
 
-    <StackLayout>
-        <swipeCardView:SwipeCardView
-            x:Name="SwipeCardView"
-            Padding="10"
-            HorizontalOptions="FillAndExpand"
-            ItemsSource="{Binding Dishes}"
-            SupportedSwipeDirections="Left, Right, Up"
-            VerticalOptions="FillAndExpand">
+                <swipeCardView:SwipeCardView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <Frame
+                                Padding="8"
+                                CornerRadius="10"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand">
+                                <AbsoluteLayout>
+                                    <Image
+                                        AbsoluteLayout.LayoutBounds=".5,0.5,1,1"
+                                        AbsoluteLayout.LayoutFlags="All"
+                                        Aspect="AspectFill"
+                                        Source="{Binding Photo}" />
+                                    <Frame
+                                        x:Name="LikeFrame"
+                                        Padding="0"
+                                        AbsoluteLayout.LayoutBounds="0.1,.1, 150, 50"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="Aquamarine"
+                                        CornerRadius="20"
+                                        Opacity="0"
+                                        Rotation="-20">
+                                        <Label
+                                            x:Name="LikeText"
+                                            BackgroundColor="Transparent"
+                                            FontSize="32"
+                                            HorizontalTextAlignment="Center"
+                                            Text="TASTY"
+                                            TextColor="#63DD99"
+                                            VerticalOptions="CenterAndExpand"
+                                            VerticalTextAlignment="Center" />
+                                    </Frame>
+                                    <Frame
+                                        x:Name="NopeFrame"
+                                        Padding="0"
+                                        AbsoluteLayout.LayoutBounds="0.9,.1, 150, 50"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="#FF6A4F"
+                                        CornerRadius="20"
+                                        Opacity="0"
+                                        Rotation="20">
+                                        <Label
+                                            BackgroundColor="Transparent"
+                                            FontSize="32"
+                                            HorizontalTextAlignment="Center"
+                                            Text="NAH"
+                                            TextColor="#FF6A4F"
+                                            VerticalOptions="CenterAndExpand"
+                                            VerticalTextAlignment="Center" />
+                                    </Frame>
+                                    <Frame
+                                        x:Name="SuperLikeFrame"
+                                        Padding="0"
+                                        AbsoluteLayout.LayoutBounds="0.5,.7, 150, 100"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        BackgroundColor="Transparent"
+                                        BorderColor="#2196F3"
+                                        CornerRadius="20"
+                                        Opacity="0"
+                                        Rotation="-20">
+                                        <Label
+                                            BackgroundColor="Transparent"
+                                            FontSize="32"
+                                            HorizontalTextAlignment="Center"
+                                            Text="CRAVINGS"
+                                            TextColor="#2196F3"
+                                            VerticalOptions="CenterAndExpand"
+                                            VerticalTextAlignment="Center" />
+                                    </Frame>
+                                    <Label
+                                        AbsoluteLayout.LayoutBounds="0.1,0.95, 150, 30"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                                        FontAttributes="Bold"
+                                        FontSize="Large"
+                                        HorizontalOptions="Fill"
+                                        TextColor="White">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Name}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </AbsoluteLayout>
+                            </Frame>
 
-            <swipeCardView:SwipeCardView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                        <Frame
-                            Padding="8"
-                            CornerRadius="10"
-                            HorizontalOptions="FillAndExpand"
-                            VerticalOptions="FillAndExpand">
-                            <AbsoluteLayout>
-                                <Image
-                                    AbsoluteLayout.LayoutBounds=".5,0.5,1,1"
-                                    AbsoluteLayout.LayoutFlags="All"
-                                    Aspect="AspectFill"
-                                    Source="{Binding Photo}" />
-                            </AbsoluteLayout>
-                        </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </swipeCardView:SwipeCardView.ItemTemplate>
+            </swipeCardView:SwipeCardView>
+            <StackLayout
+                Padding="10,0,10,20"
+                HorizontalOptions="Center"
+                Orientation="Horizontal"
+                Spacing="40">
+                <StackLayout>
+                    <ImageButton
+                        x:Name="nopeButton"
+                        BackgroundColor="Transparent"
+                        Clicked="OnDislikeClicked"
+                        Source="Nope.png"
+                        WidthRequest="60" />
+                </StackLayout>
+                <StackLayout VerticalOptions="Center">
+                    <ImageButton
+                        x:Name="superLikeButton"
+                        BackgroundColor="Transparent"
+                        Clicked="OnSuperLikeClicked"
+                        Source="Love.png"
+                        WidthRequest="60" />
+                </StackLayout>
+                <StackLayout Padding="0,-5,0,0">
+                    <ImageButton
+                        x:Name="likeButton"
+                        BackgroundColor="Transparent"
+                        Clicked="OnLikeClicked"
+                        Source="Like.png"
+                        WidthRequest="70" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
 
-                    </StackLayout>
-                </DataTemplate>
-            </swipeCardView:SwipeCardView.ItemTemplate>
-        </swipeCardView:SwipeCardView>
-    </StackLayout>
 </ContentPage>

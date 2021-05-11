@@ -95,7 +95,7 @@ namespace FoodTinder.ViewModel
         {
 
             Dishes.Add(new Dish() { Name = "Taco", Type = "Mexican", Photo = "Taco.jpg" });
-            Dishes.Add(new Dish() { Name = "Burger and Fries", Type = "American", Photo = "BurgerAndFries.jpg" });
+            Dishes.Add(new Dish() { Name = "Burger", Type = "American", Photo = "BurgerAndFries.jpg" });
             Dishes.Add(new Dish() { Name = "Sushi", Type = "Japanese", Photo = "Sushi.jpg" });
             Dishes.Add(new Dish() { Name = "Pho", Type = "Vietnamese", Photo = "Pho.jpg" });
         }

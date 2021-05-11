@@ -56,46 +56,77 @@ namespace FoodTinder.View
             switch (e.Position)
             {
                 case DraggingCardPosition.Start:
-               
+                    nopeFrame.Opacity = 0;
+                    likeFrame.Opacity = 0;
+                    superLikeFrame.Opacity = 0;
+                    nopeButton.Scale = 1;
+                    likeButton.Scale = 1;
+                    superLikeButton.Scale = 1;
                     break;
 
                 case DraggingCardPosition.UnderThreshold:
                     if (e.Direction == SwipeCardDirection.Left)
                     {
-                      
+                        nopeFrame.Opacity = (-1) * draggedXPercent;
+                        nopeButton.Scale = 1 + draggedXPercent / 2;
+                        superLikeFrame.Opacity = 0;
+                        superLikeButton.Scale = 1;
                     }
                     else if (e.Direction == SwipeCardDirection.Right)
                     {
-                       
+                        likeFrame.Opacity = draggedXPercent;
+                        likeButton.Scale = 1 - draggedXPercent / 2;
+                        superLikeFrame.Opacity = 0;
+                        superLikeButton.Scale = 1;
                     }
                     else if (e.Direction == SwipeCardDirection.Up)
                     {
-                  
+                        nopeFrame.Opacity = 0;
+                        likeFrame.Opacity = 0;
+                        nopeButton.Scale = 1;
+                        likeButton.Scale = 1;
+                        superLikeFrame.Opacity = (-1) * draggedYPercent;
+                        superLikeButton.Scale = 1 + draggedYPercent / 2;
                     }
                     break;
 
                 case DraggingCardPosition.OverThreshold:
                     if (e.Direction == SwipeCardDirection.Left)
                     {
-                      
+                        nopeFrame.Opacity = 1;
+                        superLikeFrame.Opacity = 0;
                     }
                     else if (e.Direction == SwipeCardDirection.Right)
                     {
-                     
+                        likeFrame.Opacity = 1;
+                        superLikeFrame.Opacity = 0;
                     }
                     else if (e.Direction == SwipeCardDirection.Up)
                     {
-                    
+                        nopeFrame.Opacity = 0;
+                        likeFrame.Opacity = 0;
+                        superLikeFrame.Opacity = 1;
                     }
                     break;
 
                 case DraggingCardPosition.FinishedUnderThreshold:
-           
+                    nopeFrame.Opacity = 0;
+                    likeFrame.Opacity = 0;
+                    superLikeFrame.Opacity = 0;
+                    nopeButton.Scale = 1;
+                    likeButton.Scale = 1;
+                    superLikeButton.Scale = 1;
                     break;
 
                 case DraggingCardPosition.FinishedOverThreshold:
-                
+                    nopeFrame.Opacity = 0;
+                    likeFrame.Opacity = 0;
+                    superLikeFrame.Opacity = 0;
+                    nopeButton.Scale = 1;
+                    likeButton.Scale = 1;
+                    superLikeButton.Scale = 1;
                     break;
+
 
                 default:
                     throw new ArgumentOutOfRangeException();
