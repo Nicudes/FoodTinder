@@ -11,5 +11,7 @@ namespace FoodTinder.Model
         public string Type { get; set; }
 
         public string Photo { get; set; }
+
+        public string AddedBy { get; set; }
     }
 }

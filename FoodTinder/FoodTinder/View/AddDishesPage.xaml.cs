@@ -27,5 +27,10 @@ namespace FoodTinder.View
         {
 
         }
+
+        private void My_Dishes_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace FoodTinder.Model
     {
         public string Name { get; set; }
 
-        public bool Adult { get; set; }
+        public bool IsAdult { get; set; }
 
         public int NumberOfPowerUps { get; set; }
     }
