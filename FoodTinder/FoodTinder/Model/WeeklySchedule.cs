@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FoodTinder.Model
 {
-    class WeeklySchedule
+   public class WeeklySchedule
     {
         public string Monday { get; set; }
         public string Tuesday { get; set; }

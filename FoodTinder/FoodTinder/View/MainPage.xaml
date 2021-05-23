@@ -7,59 +7,75 @@
     BackgroundImageSource="BurgerAndFries.jpg"
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Image
-                Margin="0,30,0,0"
-                Scale="0.8"
-                Source="FoodSwipe.png" />
-            <StackLayout
-                x:Name="FirstView"
-                IsVisible="false"
-                VerticalOptions="CenterAndExpand">
-                <Entry Placeholder="Number of users" />
-                <Button Text="Done" />
+        <StackLayout>
+            <StackLayout IsVisible="false" Orientation="Vertical">
+                <Image
+                    Margin="0,30,0,0"
+                    Scale="0.8"
+                    Source="FoodSwipe.png" />
+                <StackLayout
+                    x:Name="FirstView"
+                    IsVisible="false"
+                    VerticalOptions="CenterAndExpand">
+                    <Entry Placeholder="Number of users" />
+                    <Button Text="Done" />
+                </StackLayout>
+                <StackLayout
+                    x:Name="MainView"
+                    Margin="0,-100,0,0"
+                    Padding="40,0"
+                    BackgroundColor="#89000000"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <Label
+                        Margin="0,0,0,15"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalTextAlignment="Center"
+                        TextColor="WhiteSmoke">
+                        Main Page
+                    </Label>
+                    <Button
+                        Margin="0,10"
+                        BackgroundColor="DarkCyan"
+                        Clicked="Swipe_Clicked"
+                        Text="SWIPE" />
+                    <Button
+                        Margin="0,10"
+                        BackgroundColor="DarkCyan"
+                        Clicked="Add_Dish_Clicked"
+                        Text="Add Dishes" />
+                    <Button
+                        Margin="0,10"
+                        BackgroundColor="DarkCyan"
+                        Clicked="Weekly_Clicked"
+                        Text="Weekly Schedule" />
+                    <Button
+                        Margin="0,10"
+                        BackgroundColor="DarkCyan"
+                        Clicked="Preference_Clicked"
+                        Text="Food Preference" />
+                    <Button
+                        Margin="0,10,0,20"
+                        BackgroundColor="DarkCyan"
+                        Clicked="Edit_Clicked"
+                        Text="Edit Profile" />
+                </StackLayout>
             </StackLayout>
-            <StackLayout
-                x:Name="MainView"
-                Margin="0,-100,0,0"
-                Padding="40,0"
-                BackgroundColor="#89000000"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand">
-                <Label
-                    Margin="0,0,0,15"
-                    FontAttributes="Bold"
-                    FontSize="Large"
-                    HorizontalTextAlignment="Center"
-                    TextColor="WhiteSmoke">
-                    Main Page
-                </Label>
+
+            <StackLayout>
+
+                <Entry x:Name="NumberOfUsers" Placeholder="Number of users" />
                 <Button
-                    Margin="0,10"
-                    BackgroundColor="DarkCyan"
-                    Clicked="Swipe_Clicked"
-                    Text="SWIPE" />
-                <Button
-                    Margin="0,10"
-                    BackgroundColor="DarkCyan"
-                    Clicked="Add_Dish_Clicked"
-                    Text="Add Dishes" />
-                <Button
-                    Margin="0,10"
-                    BackgroundColor="DarkCyan"
-                    Clicked="Weekly_Clicked"
-                    Text="Weekly Schedule" />
-                <Button
-                    Margin="0,10"
-                    BackgroundColor="DarkCyan"
-                    Clicked="Preference_Clicked"
-                    Text="Food Preference" />
-                <Button
-                    Margin="0,10,0,20"
-                    BackgroundColor="DarkCyan"
-                    Clicked="Edit_Clicked"
-                    Text="Edit Profile" />
+                    x:Name="userNumberConfirm"
+                    Clicked="userNumberConfirm_Clicked"
+                    Text="Confirm" />
+                <StackLayout>
+                    <ListView x:Name="UserAdd" ItemsSource="{Binding Users}" />
+                </StackLayout>
+
             </StackLayout>
+
             <Label FontSize="12" HorizontalTextAlignment="Center">Made by Huy Tran</Label>
         </StackLayout>
     </ContentPage.Content>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FoodTinder.Model
 {
-    class Dish
+   public class Dish
     {
         public string Name { get; set; }
 
