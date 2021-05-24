@@ -71,7 +71,13 @@
                     Clicked="userNumberConfirm_Clicked"
                     Text="Confirm" />
                 <StackLayout>
-                    <ListView x:Name="UserAdd" ItemsSource="{Binding Users}" />
+                    <ListView x:Name="UserAdd" ItemsSource="{Binding Users}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
 
             </StackLayout>
