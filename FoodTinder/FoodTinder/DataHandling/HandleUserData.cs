@@ -1,5 +1,6 @@
 ﻿using FoodTinder.Model;
 using FoodTinder.ViewModel;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,35 +11,14 @@ namespace FoodTinder.DataHandling
     public class HandleUserData : BasePageViewModel
     {
 
+        public static ObservableCollection<User> Users = new ObservableCollection<User>();
+     
+        public static ObservableCollection<Dish> MyDishes = new ObservableCollection<Dish>();
 
-        private int _numberOfUsers;
-        public int NumberOfUsers
-        {
-            get { return _numberOfUsers; }
-            set { _numberOfUsers = value;
-                RaisePropertyChanged();
-            }
-        }
+        public static ObservableCollection<FoodFilter> MyFoodFilter = new ObservableCollection<FoodFilter>();
 
-
-        public ObservableCollection<User> _users = new ObservableCollection<User>();
-        public ObservableCollection<User> Users
-        {
-            get { return _users; }
-            set { _users = value;
-                RaisePropertyChanged();
-            }
-        }
-
-       public void setNumberOfUsers(int NumOfUsers)
-        {
-              _numberOfUsers = NumOfUsers;
-
-            Users.Add(new User() { Name = "Huy", IsAdult = true, NumberOfPowerUps = 2 });
-            Users.Add(new User() { Name = "Fia", IsAdult = true, NumberOfPowerUps = 2 });
-            Users.Add(new User() { Name = "Molly", IsAdult = false, NumberOfPowerUps = 2 });
-
-        }
+        public static ObservableCollection<WeeklySchedule> WeeklySchedules = new ObservableCollection<WeeklySchedule>();
+       
 
 
     }

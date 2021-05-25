@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FoodTinder.View.AddUserPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Add a new user" />
+
+            <Entry x:Name="NameEntry" Placeholder="Name" />
+            <StackLayout Orientation="Vertical">
+                <Label x:Name="AdultOrNot" Text="Adult" />
+                <Switch IsToggled="True" Toggled="Adult_Switch_Toggled" />
+            </StackLayout>
+
+            <Button
+                x:Name="AddUserClicked"
+                Clicked="Add_User_Clicked"
+                Text="Add user" />
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

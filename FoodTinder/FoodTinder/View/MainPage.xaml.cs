@@ -7,6 +7,7 @@ using FoodTinder.Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using FoodTinder.DataHandling;
+using FoodTinder.ViewModel;
 using System.Collections.ObjectModel;
 using SQLite;
 
@@ -15,25 +16,18 @@ namespace FoodTinder.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
-        private static int _numberOfUsers;
-        public ObservableCollection<User> Users = new ObservableCollection<User>();
-
-
         public MainPage()
         {
             InitializeComponent();
-
+            BindingContext = new HandleUserData();
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            //Users.Add(new User() { Name = "Huy", IsAdult = true, NumberOfPowerUps = 2 });
-            //Users.Add(new User() { Name = "Fia", IsAdult = true, NumberOfPowerUps = 2 });
-            //Users.Add(new User() { Name = "Molly", IsAdult = false, NumberOfPowerUps = 2 });
 
-            UserAdd.ItemsSource = Users;
+            AppStartup();
         }
 
         private void Swipe_Clicked(object sender, EventArgs e)
@@ -64,47 +58,95 @@ namespace FoodTinder.View
 
         }
 
-        HandleUserData HandleData = new HandleUserData();
 
-        private void userNumberConfirm_Clicked(object sender, EventArgs e)
+        public void GetUsers()
         {
-            //try
-            //{
-            //   HandleData.setNumberOfUsers(Convert.ToInt32(NumberOfUsers.Text));
-
-            //}
-            //catch (Exception)
-            //{
-            //    DisplayAlert("Invalid input", "Please choose a valid number", "Ok");
-            //}
-            //if (HandleData.NumberOfUsers > 0)
-            //{
-            //    NumberOfUsers.IsVisible = false;
-            //    userNumberConfirm.IsVisible = false;
-            //}
-            //else
-            //{
-            //    DisplayAlert("Invalid input", "Please choose a valid number", "Ok");
-
-            //}
-
-            User _user = new User() {
-                Name = NumberOfUsers.Text,
-                IsAdult = true,
-                NumberOfPowerUps = 2};
 
             SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
             conn.CreateTable<User>();
-            int rows = conn.Insert(_user);
+            var SQliteUsers = conn.Table<User>().ToList();
             conn.Close();
 
-            Users.Add(_user);
-
-            if (rows > 0)
+            foreach (var i in SQliteUsers)
             {
-                DisplayAlert("Success", "Added", "ok");
+                HandleUserData.Users.Add(i);
             }
         }
+
+        public void GetDishes()
+        {
+            SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+            conn.CreateTable<Dish>();
+            var SQliteUsers = conn.Table<Dish>().ToList();
+            conn.Close();
+
+            foreach (var i in SQliteUsers)
+            {
+                HandleUserData.MyDishes.Add(i);
+            }
+        }
+
+        public void GetFoodFilter()
+        {
+            SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+            conn.CreateTable<FoodFilter>();
+            var SQliteUsers = conn.Table<FoodFilter>().ToList();
+            conn.Close();
+
+            foreach (var i in SQliteUsers)
+            {
+                HandleUserData.MyFoodFilter.Add(i);
+            }
+        }
+
+        public void GetWeeklySchedule()
+        {
+            SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+            conn.CreateTable<WeeklySchedule>();
+            var SQliteUsers = conn.Table<WeeklySchedule>().ToList();
+            conn.Close();
+
+            foreach (var i in SQliteUsers)
+            {
+                HandleUserData.WeeklySchedules.Add(i);
+            }
+        }
+
+        public void AppStartup()
+        {
+            GetUsers();
+            GetDishes();
+            GetFoodFilter();
+            GetWeeklySchedule();
+
+            if (!HandleUserData.Users.Any())
+            {
+
+            }
+            else
+            {
+                MenuView.IsVisible = true;
+            }
+
+        }
+
+        private void AddUser_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddUserPage());
+
+        }
+
+
+
+
+        //INSERT DISH
+        //SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+        //conn.CreateTable<Dish>();
+        //int rows = conn.Insert(_dish);
+        //conn.Close();
+
+
+
 
 
 

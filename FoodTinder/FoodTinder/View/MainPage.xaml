@@ -8,7 +8,10 @@
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout IsVisible="false" Orientation="Vertical">
+            <StackLayout
+                x:Name="MenuView"
+                IsVisible="false"
+                Orientation="Vertical">
                 <Image
                     Margin="0,30,0,0"
                     Scale="0.8"
@@ -63,15 +66,14 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout>
+            <Button
+                x:Name="AddUser"
+                Clicked="AddUser_Clicked"
+                Text="Add new user" />
 
-                <Entry x:Name="NumberOfUsers" Placeholder="Number of users" />
-                <Button
-                    x:Name="userNumberConfirm"
-                    Clicked="userNumberConfirm_Clicked"
-                    Text="Confirm" />
+            <StackLayout>
                 <StackLayout>
-                    <ListView x:Name="UserAdd" ItemsSource="{Binding Users}">
+                    <ListView x:Name="UserAdd">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextCell Text="{Binding Name}" />
