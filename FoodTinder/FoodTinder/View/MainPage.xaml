@@ -70,19 +70,19 @@
                 x:Name="AddUser"
                 Clicked="AddUser_Clicked"
                 Text="Add new user" />
-
             <StackLayout>
-                <StackLayout>
-                    <ListView x:Name="UserAdd">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <TextCell Text="{Binding Name}" />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </StackLayout>
-
+                <ListView x:Name="UserAdd">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
+            <Button
+                x:Name="ConfirmUsers"
+                Clicked="ConfirmUsers_Clicked"
+                Text="Done" />
 
             <Label FontSize="12" HorizontalTextAlignment="Center">Made by Huy Tran</Label>
         </StackLayout>

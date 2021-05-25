@@ -136,6 +136,29 @@ namespace FoodTinder.View
 
         }
 
+        private void ConfirmUsers_Clicked(object sender, EventArgs e)
+        {
+            SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+            conn.CreateTable<User>();
+            int rows = 0;
+            foreach (var i in HandleUserData.Users)
+            {
+                rows = conn.Insert(i);
+            }
+            
+            conn.Close();
+
+            if (rows > 0)
+            {
+                DisplayAlert("Success", "User successfully added", "ok");
+
+            }
+            else
+            {
+                DisplayAlert("Failure", "Failed to add users", "ok");
+            }
+        }
+
 
 
 
