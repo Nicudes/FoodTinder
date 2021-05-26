@@ -8,24 +8,14 @@
     NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
+            <Image Scale="0.8" Source="FoodSwipe.png" />
             <StackLayout
                 x:Name="MenuView"
+                Margin="0,50,0,0"
                 IsVisible="false"
                 Orientation="Vertical">
-                <Image
-                    Margin="0,30,0,0"
-                    Scale="0.8"
-                    Source="FoodSwipe.png" />
-                <StackLayout
-                    x:Name="FirstView"
-                    IsVisible="false"
-                    VerticalOptions="CenterAndExpand">
-                    <Entry Placeholder="Number of users" />
-                    <Button Text="Done" />
-                </StackLayout>
                 <StackLayout
                     x:Name="MainView"
-                    Margin="0,-100,0,0"
                     Padding="40,0"
                     BackgroundColor="#89000000"
                     HorizontalOptions="CenterAndExpand"
@@ -36,7 +26,7 @@
                         FontSize="Large"
                         HorizontalTextAlignment="Center"
                         TextColor="WhiteSmoke">
-                        Main Page
+                        Menu
                     </Label>
                     <Button
                         Margin="0,10"
@@ -47,12 +37,12 @@
                         Margin="0,10"
                         BackgroundColor="DarkCyan"
                         Clicked="Add_Dish_Clicked"
-                        Text="Add Dishes" />
+                        Text="Dishes" />
                     <Button
                         Margin="0,10"
                         BackgroundColor="DarkCyan"
                         Clicked="Weekly_Clicked"
-                        Text="Weekly Schedule" />
+                        Text="Food Schedules" />
                     <Button
                         Margin="0,10"
                         BackgroundColor="DarkCyan"
@@ -66,24 +56,27 @@
                 </StackLayout>
             </StackLayout>
 
-            <Button
-                x:Name="AddUser"
-                Clicked="AddUser_Clicked"
-                Text="Add new user" />
-            <StackLayout>
-                <ListView x:Name="UserAdd">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextCell Text="{Binding Name}" />
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-            <Button
-                x:Name="ConfirmUsers"
-                Clicked="ConfirmUsers_Clicked"
-                Text="Done" />
 
+            <StackLayout x:Name="AddUserStack">
+
+                <Button
+                    x:Name="AddUser"
+                    Clicked="AddUser_Clicked"
+                    Text="Add new user" />
+                <StackLayout>
+                    <ListView x:Name="UserAdd">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <Button
+                    x:Name="ConfirmUsers"
+                    Clicked="ConfirmUsers_Clicked"
+                    Text="Done" />
+            </StackLayout>
             <Label FontSize="12" HorizontalTextAlignment="Center">Made by Huy Tran</Label>
         </StackLayout>
     </ContentPage.Content>

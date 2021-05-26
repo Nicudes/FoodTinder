@@ -18,8 +18,9 @@ namespace FoodTinder.DataHandling
         public static ObservableCollection<FoodFilter> MyFoodFilter = new ObservableCollection<FoodFilter>();
 
         public static ObservableCollection<WeeklySchedule> WeeklySchedules = new ObservableCollection<WeeklySchedule>();
-       
 
+        //Don't need to be a list...but for now.
+        public static ObservableCollection<UserAuth> FirstCreation = new ObservableCollection<UserAuth>();
 
     }
 }

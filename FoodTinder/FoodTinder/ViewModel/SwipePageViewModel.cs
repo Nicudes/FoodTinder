@@ -4,18 +4,19 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
+using SQLite;
+using FoodTinder.DataHandling;
 
 namespace FoodTinder.ViewModel
 {
     class SwipePageViewModel : BasePageViewModel
     {
-        private ObservableCollection<Dish> _dishes = new ObservableCollection<Dish>();
 
-        private uint _threshold;
 
         public SwipePageViewModel()
         {
             InitializeProfiles();
+            GetUserDishes();
 
             Threshold = (uint)(App.ScreenWidth / 3);
 
@@ -26,6 +27,8 @@ namespace FoodTinder.ViewModel
             AddItemsCommand = new Command(OnAddItemsCommand);
         }
 
+
+        private ObservableCollection<Dish> _dishes = new ObservableCollection<Dish>();
         public ObservableCollection<Dish> Dishes
         {
             get => _dishes;
@@ -36,6 +39,7 @@ namespace FoodTinder.ViewModel
             }
         }
 
+        private uint _threshold;
         public uint Threshold
         {
             get => _threshold;
@@ -98,6 +102,14 @@ namespace FoodTinder.ViewModel
             Dishes.Add(new Dish() { Name = "Burger", Type = "American", Photo = "BurgerAndFries.jpg" });
             Dishes.Add(new Dish() { Name = "Sushi", Type = "Japanese", Photo = "Sushi.jpg" });
             Dishes.Add(new Dish() { Name = "Pho", Type = "Vietnamese", Photo = "Pho.jpg" });
+        }
+
+        private void GetUserDishes()
+        {
+            foreach (var i in HandleUserData.MyDishes)
+            {
+                Dishes.Add(i);
+            }
         }
     }
 }

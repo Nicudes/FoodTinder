@@ -16,6 +16,7 @@ namespace FoodTinder.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
     {
+
         public MainPage()
         {
             InitializeComponent();
@@ -25,9 +26,9 @@ namespace FoodTinder.View
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-
             AppStartup();
+            UserAdd.ItemsSource = HandleUserData.Users;
+
         }
 
         private void Swipe_Clicked(object sender, EventArgs e)
@@ -64,10 +65,10 @@ namespace FoodTinder.View
 
             SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
             conn.CreateTable<User>();
-            var SQliteUsers = conn.Table<User>().ToList();
+            var SqliteUsers = conn.Table<User>().ToList();
             conn.Close();
 
-            foreach (var i in SQliteUsers)
+            foreach (var i in SqliteUsers)
             {
                 HandleUserData.Users.Add(i);
             }
@@ -77,10 +78,10 @@ namespace FoodTinder.View
         {
             SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
             conn.CreateTable<Dish>();
-            var SQliteUsers = conn.Table<Dish>().ToList();
+            var SqliteDishes = conn.Table<Dish>().ToList();
             conn.Close();
 
-            foreach (var i in SQliteUsers)
+            foreach (var i in SqliteDishes)
             {
                 HandleUserData.MyDishes.Add(i);
             }
@@ -90,10 +91,10 @@ namespace FoodTinder.View
         {
             SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
             conn.CreateTable<FoodFilter>();
-            var SQliteUsers = conn.Table<FoodFilter>().ToList();
+            var SqliteFoodFilter = conn.Table<FoodFilter>().ToList();
             conn.Close();
 
-            foreach (var i in SQliteUsers)
+            foreach (var i in SqliteFoodFilter)
             {
                 HandleUserData.MyFoodFilter.Add(i);
             }
@@ -103,12 +104,25 @@ namespace FoodTinder.View
         {
             SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
             conn.CreateTable<WeeklySchedule>();
-            var SQliteUsers = conn.Table<WeeklySchedule>().ToList();
+            var SqliteSchedules = conn.Table<WeeklySchedule>().ToList();
             conn.Close();
 
-            foreach (var i in SQliteUsers)
+            foreach (var i in SqliteSchedules)
             {
                 HandleUserData.WeeklySchedules.Add(i);
+            }
+        }
+
+        public void CheckIfFirstCreationIsTrue()
+        {
+            SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+            conn.CreateTable<UserAuth>();
+            var SqliteAuthDone = conn.Table<UserAuth>().ToList();
+            conn.Close();
+
+            foreach (var i in SqliteAuthDone)
+            {
+                HandleUserData.FirstCreation.Add(i);
             }
         }
 
@@ -118,14 +132,17 @@ namespace FoodTinder.View
             GetDishes();
             GetFoodFilter();
             GetWeeklySchedule();
+            CheckIfFirstCreationIsTrue();
 
-            if (!HandleUserData.Users.Any())
+            if (HandleUserData.FirstCreation.Any())
             {
-
+                MenuView.IsVisible = true;
+                AddUserStack.IsVisible = false;
             }
             else
             {
-                MenuView.IsVisible = true;
+                AddUserStack.IsVisible = true;
+                MenuView.IsVisible = false;
             }
 
         }
@@ -151,11 +168,30 @@ namespace FoodTinder.View
             if (rows > 0)
             {
                 DisplayAlert("Success", "User successfully added", "ok");
-
+                SetUserFirstCreationToTrue();
+                MenuView.IsVisible = true;
+                AddUserStack.IsVisible = false;
             }
             else
             {
                 DisplayAlert("Failure", "Failed to add users", "ok");
+            }
+        }
+
+        void SetUserFirstCreationToTrue()
+        {
+            UserAuth userAuth = new UserAuth()
+            {
+                IsUserCreated = true
+            };
+
+            HandleUserData.FirstCreation.Add(userAuth);
+
+            SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation);
+            conn.CreateTable<UserAuth>();
+            foreach (var i in HandleUserData.FirstCreation)
+            {
+                conn.Insert(i);
             }
         }
 
